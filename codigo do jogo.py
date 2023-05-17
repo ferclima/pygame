@@ -77,9 +77,19 @@ class NPC(pygame.sprite.Sprite):
         self.image = img
         self.rect = self.image.get_rect()
         self.speedx = 0
-        self.speedy = 0
-        self.rect.centerx = 170
-        self.rect.bottom = 100
+        self.speedy = 3
+        self.rect.x = random.randint(150,350)
+        self.rect.bottom = 0
+
+    def update(self):
+        # Atualização da posição da nave
+        self.rect.x += self.speedx
+        self.rect.y += self.speedy 
+
+        # Mantem dentro da tela
+        if self.rect.y > HEIGHT:
+            self.rect.x = random.randint(150,350)
+            self.rect.bottom = 0
 
 all_sprites = pygame.sprite.Group()
 all_pistas = pygame.sprite.Group()
