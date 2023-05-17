@@ -81,8 +81,20 @@ while game:
         # ----- Verifica consequências
         if event.type == pygame.QUIT:
             game = False
+        # Verifica se apertou alguma tecla.
         if event.type == pygame.KEYDOWN:
-            game = False
+            # Dependendo da tecla, altera a velocidade.
+            if event.key == pygame.K_LEFT:
+                carro.speedx -= 4
+            if event.key == pygame.K_RIGHT:
+                carro.speedx += 4
+        # Verifica se soltou alguma tecla.
+        if event.type == pygame.KEYUP:
+            # Dependendo da tecla, altera a velocidade.
+            if event.key == pygame.K_LEFT:
+                carro.speedx += 4
+            if event.key == pygame.K_RIGHT:
+                carro.speedx -= 4
 
     all_pistas.update()
     all_sprites.update()
