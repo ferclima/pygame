@@ -62,6 +62,10 @@ class Carro(pygame.sprite.Sprite):
             self.rect.right = WIDTH
         if self.rect.left < 0:
             self.rect.left = 0
+        if self.rect.bottom > HEIGHT:
+            self.rect.bottom = HEIGHT
+        if self.rect.top < 0:
+            self.rect.top = 0
 
 all_sprites = pygame.sprite.Group()
 all_pistas = pygame.sprite.Group()
@@ -103,9 +107,9 @@ while game:
             if event.key == pygame.K_RIGHT:
                 carro.speedx -= 4
             if event.key == pygame.K_UP:
-                carro.speedy -= 4
-            if event.key == pygame.K_DOWN:
                 carro.speedy += 4
+            if event.key == pygame.K_DOWN:
+                carro.speedy -= 4
 
     all_pistas.update()
     all_sprites.update()
