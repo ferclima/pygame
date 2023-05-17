@@ -55,6 +55,7 @@ class Carro(pygame.sprite.Sprite):
     def update(self):
         # Atualização da posição da nave
         self.rect.x += self.speedx
+        self.rect.y += self.speedy 
 
         # Mantem dentro da tela
         if self.rect.right > WIDTH:
