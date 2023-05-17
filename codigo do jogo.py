@@ -1,6 +1,7 @@
 # ===== Inicialização =====
 # ----- Importa e inicia pacotes
 import pygame
+import random
 
 pygame.init()
 
@@ -25,7 +26,7 @@ class Pista(pygame.sprite.Sprite):
 
         self.image = img
         self.rect = self.image.get_rect()
-        self.rect.x = 150
+        self.rect.x = 150 
         self.speedx = 0
         self.speedy = 4
 
@@ -36,8 +37,10 @@ class Pista(pygame.sprite.Sprite):
         # Se o meteoro passar do final da tela, volta para cima e sorteia
         # novas posições e velocidades
         if self.rect.y > HEIGHT:
-            self.rect.x = 150
+            self.rect.x += 1
             self.rect.y = 0
+            if self.rect.x >= WIDTH:
+                self.rect.x -= 1
 
 class Carro(pygame.sprite.Sprite):
     def __init__(self, img):
