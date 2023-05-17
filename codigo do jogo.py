@@ -79,7 +79,7 @@ class NPC(pygame.sprite.Sprite):
         self.speedx = 0
         self.speedy = 3
         self.rect.x = random.randint(150,315)
-        self.rect.bottom = random.randint(0, (-600))
+        self.rect.bottom = random.randint(-600, 0)
 
     def update(self):
         # Atualização da posição da nave
@@ -89,7 +89,7 @@ class NPC(pygame.sprite.Sprite):
         # Mantem dentro da tela
         if self.rect.y > HEIGHT:
             self.rect.x = random.randint(150,350)
-            self.rect.bottom = random.randint(0, (-600))
+            self.rect.bottom = random.randint(-600, 0)
 
 all_sprites = pygame.sprite.Group()
 all_pistas = pygame.sprite.Group()
