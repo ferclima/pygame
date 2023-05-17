@@ -19,6 +19,8 @@ paisagem_img = pygame.image.load('Paisagem2..png').convert_alpha()
 pista_img = pygame.image.load('Mini pista.png').convert_alpha()
 carro_img = pygame.image.load('obstaculo 1.png').convert_alpha()
 carro_img = pygame.transform.scale(carro_img, (35, 50))
+npc_img = pygame.image.load('obstaculo 2.png').convert_alpha()
+npc_img = pygame.transform.scale(npc_img, (35, 50))
 
 class Pista(pygame.sprite.Sprite):
     def __init__(self, img):
@@ -67,14 +69,31 @@ class Carro(pygame.sprite.Sprite):
         if self.rect.top < HEIGHT/2:
             self.rect.top = HEIGHT/2
 
+class NPC(pygame.sprite.Sprite):
+    def __init__(self, img):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.speedx = 0
+        self.speedy = 0
+        self.rect.centerx = 170
+        self.rect.bottom = 100
+
 all_sprites = pygame.sprite.Group()
 all_pistas = pygame.sprite.Group()
+all_npcs = pygame.sprite.Group()
 
 for i in range(16):
     pista = Pista(pista_img)
     pista.rect.y = 40 * i 
     all_pistas.add(pista)
     all_sprites.add(pista)
+
+npc = NPC(npc_img)
+all_npcs.add(npc)
+all_sprites.add(npc)
 
 carro = Carro(carro_img)
 all_sprites.add(carro)
@@ -110,6 +129,7 @@ while game:
 
 
     all_pistas.update()
+    all_npcs.update()
     all_sprites.update()
 
     # ----- Gera saídas
