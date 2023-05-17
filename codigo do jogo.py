@@ -17,7 +17,7 @@ FPS = 30
 game = True
 paisagem_img = pygame.image.load('Paisagem2..png').convert_alpha()
 pista_img = pygame.image.load('Mini pista.png').convert_alpha()
-carro_img = pygame.image.load('Carrinho v1.png').convert_alpha()
+carro_img = pygame.image.load('carrinho2-removebg-preview.png').convert_alpha()
 carro_img = pygame.transform.scale(carro_img, (50, 38))
 
 class Pista(pygame.sprite.Sprite):
@@ -49,8 +49,8 @@ class Carro(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.speedx = 0
         self.speedy = 0
-        self.rect.centerx = WIDTH /2
-        self.rect.bottom = HEIGHT - 10
+        self.rect.centerx = WIDTH 
+        self.rect.bottom = HEIGHT +100
 
     def update(self):
         # Atualização da posição da nave
