@@ -38,6 +38,7 @@ class Pista(pygame.sprite.Sprite):
         if self.rect.y > HEIGHT:
             self.rect.x = 150
             self.rect.y = 0
+
 class Carro(pygame.sprite.Sprite):
     def __init__(self, img):
         # Construtor da classe mãe (Sprite).
@@ -45,8 +46,19 @@ class Carro(pygame.sprite.Sprite):
 
         self.image = img
         self.rect = self.image.get_rect()
+        self.speedx = 4
         self.rect.centerx = WIDTH /2
         self.rect.bottom = HEIGHT - 10
+
+    def update(self):
+        # Atualização da posição da nave
+        self.rect.x += self.speedx
+
+        # Mantem dentro da tela
+        if self.rect.right > WIDTH:
+            self.rect.right = WIDTH
+        if self.rect.left < 0:
+            self.rect.left = 0
 
 all_sprites = pygame.sprite.Group()
 all_pistas = pygame.sprite.Group()
