@@ -31,7 +31,7 @@ class Pista(pygame.sprite.Sprite):
 
         self.image = img
         self.rect = self.image.get_rect()
-        self.rect.x = 150 
+        self.rect.centerx = WIDTH/2
         self.speedx = 0
         self.speedy = 4
 
