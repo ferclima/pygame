@@ -18,7 +18,7 @@ game = True
 paisagem_img = pygame.image.load('Paisagem2..png').convert_alpha()
 pista_img = pygame.image.load('Mini pista.png').convert_alpha()
 carro_img = pygame.image.load('carrinho2-removebg-preview.png').convert_alpha()
-carro_img = pygame.transform.scale(carro_img, (50, 38))
+carro_img = pygame.transform.scale(carro_img, (35, 50))
 
 class Pista(pygame.sprite.Sprite):
     def __init__(self, img):
@@ -48,7 +48,7 @@ class Carro(pygame.sprite.Sprite):
         self.image = img
         self.rect = self.image.get_rect()
         self.speedx = 0
-        self.speedy = 0
+        self.speedy = 4
         self.rect.centerx = WIDTH 
         self.rect.bottom = HEIGHT +100
 
@@ -96,9 +96,8 @@ while game:
             if event.key == pygame.K_RIGHT:
                 carro.speedx += 4
             if event.key == pygame.K_UP:
-                carro.speedy -= 4
-            if event.key == pygame.K_DOWN:
-                carro.speedy += 4
+                carro.speedy -= 8
+
         # Verifica se soltou alguma tecla.
         if event.type == pygame.KEYUP:
             # Dependendo da tecla, altera a velocidade.
@@ -107,9 +106,8 @@ while game:
             if event.key == pygame.K_RIGHT:
                 carro.speedx -= 4
             if event.key == pygame.K_UP:
-                carro.speedy += 4
-            if event.key == pygame.K_DOWN:
-                carro.speedy -= 4
+                carro.speedy += 8
+
 
     all_pistas.update()
     all_sprites.update()
