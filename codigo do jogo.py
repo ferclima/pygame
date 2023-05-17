@@ -49,8 +49,8 @@ class Carro(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.speedx = 0
         self.speedy = 4
-        self.rect.centerx = WIDTH 
-        self.rect.bottom = HEIGHT +100
+        self.rect.centerx = WIDTH /2
+        self.rect.bottom = HEIGHT - 100
 
     def update(self):
         # Atualização da posição da nave
