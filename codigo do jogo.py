@@ -46,6 +46,7 @@ class Carro(pygame.sprite.Sprite):
 
         self.image = img
         self.rect = self.image.get_rect()
+        self.speedx = 0
         self.rect.centerx = WIDTH /2
         self.rect.bottom = HEIGHT - 10
 
