@@ -48,6 +48,7 @@ class Carro(pygame.sprite.Sprite):
         self.image = img
         self.rect = self.image.get_rect()
         self.speedx = 0
+        self.speedy = 0
         self.rect.centerx = WIDTH /2
         self.rect.bottom = HEIGHT - 10
 
@@ -89,6 +90,10 @@ while game:
                 carro.speedx -= 4
             if event.key == pygame.K_RIGHT:
                 carro.speedx += 4
+            if event.key == pygame.K_UP:
+                carro.speedy -= 4
+            if event.key == pygame.K_DOWN:
+                carro.speedy += 4
         # Verifica se soltou alguma tecla.
         if event.type == pygame.KEYUP:
             # Dependendo da tecla, altera a velocidade.
@@ -96,6 +101,10 @@ while game:
                 carro.speedx += 4
             if event.key == pygame.K_RIGHT:
                 carro.speedx -= 4
+            if event.key == pygame.K_UP:
+                carro.speedy -= 4
+            if event.key == pygame.K_DOWN:
+                carro.speedy += 4
 
     all_pistas.update()
     all_sprites.update()
@@ -103,6 +112,7 @@ while game:
     # ----- Gera saídas
 
     window.fill((150, 0, 0))  # Preenche com a cor branca
+    window.blit(paisagem_img, (0, 0))
     
     all_sprites.draw(window)
 
