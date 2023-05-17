@@ -78,8 +78,8 @@ class NPC(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.speedx = 0
         self.speedy = 3
-        self.rect.x = random.randint(150,350)
-        self.rect.bottom = 0
+        self.rect.x = random.randint(150,315)
+        self.rect.bottom = random.randint(0, (-600))
 
     def update(self):
         # Atualização da posição da nave
@@ -89,7 +89,7 @@ class NPC(pygame.sprite.Sprite):
         # Mantem dentro da tela
         if self.rect.y > HEIGHT:
             self.rect.x = random.randint(150,350)
-            self.rect.bottom = 0
+            self.rect.bottom = random.randint(0, (-600))
 
 all_sprites = pygame.sprite.Group()
 all_pistas = pygame.sprite.Group()
@@ -101,9 +101,10 @@ for i in range(16):
     all_pistas.add(pista)
     all_sprites.add(pista)
 
-npc = NPC(npc_img)
-all_npcs.add(npc)
-all_sprites.add(npc)
+for l in range(10):
+    npc = NPC(npc_img)
+    all_npcs.add(npc)
+    all_sprites.add(npc)
 
 carro = Carro(carro_img)
 all_sprites.add(carro)
