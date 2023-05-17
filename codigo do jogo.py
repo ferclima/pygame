@@ -22,6 +22,8 @@ carro_img = pygame.transform.scale(carro_img, (35, 50))
 npc_img = pygame.image.load('obstaculo 2.png').convert_alpha()
 npc_img = pygame.transform.scale(npc_img, (35, 50))
 
+posicoes_iniciais = [175, 225, 275, 325]
+
 class Pista(pygame.sprite.Sprite):
     def __init__(self, img):
         # Construtor da classe mãe (Sprite).
@@ -78,7 +80,7 @@ class NPC(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.speedx = 0
         self.speedy = 3
-        self.rect.x = random.randint(150,315)
+        self.rect.centerx = posicoes_iniciais[random.randint(0,3)]
         self.rect.bottom = random.randint(-600, 0)
 
     def update(self):
@@ -88,7 +90,7 @@ class NPC(pygame.sprite.Sprite):
 
         # Mantem dentro da tela
         if self.rect.y > HEIGHT:
-            self.rect.x = random.randint(150,350)
+            self.rect.centerx = posicoes_iniciais[random.randint(0,3)]
             self.rect.bottom = random.randint(-600, 0)
 
 all_sprites = pygame.sprite.Group()
