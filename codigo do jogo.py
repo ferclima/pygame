@@ -26,9 +26,8 @@ class Pista(pygame.sprite.Sprite):
         self.image = img
         self.rect = self.image.get_rect()
         self.rect.x = 150
-        self.rect.y = 0
         self.speedx = 0
-        self.speedy = 5
+        self.speedy = 4
 
     def update(self):
         # Atualizando a posição do meteoro
@@ -37,7 +36,8 @@ class Pista(pygame.sprite.Sprite):
         # Se o meteoro passar do final da tela, volta para cima e sorteia
         # novas posições e velocidades
         if self.rect.y > HEIGHT:
-            self.kill()
+            self.rect.x = 150
+            self.rect.y = 0
 class Carro(pygame.sprite.Sprite):
     def __init__(self, img):
         # Construtor da classe mãe (Sprite).
@@ -50,10 +50,14 @@ class Carro(pygame.sprite.Sprite):
 
 all_sprites = pygame.sprite.Group()
 all_pistas = pygame.sprite.Group()
-pista = Pista(pista_img)
+
+for i in range(15):
+    pista = Pista(pista_img)
+    pista.rect.y = 40 * i 
+    all_pistas.add(pista)
+    all_sprites.add(pista)
+
 carro = Carro(carro_img)
-all_pistas.add(pista)
-all_sprites.add(pista)
 all_sprites.add(carro)
 
 # ===== Loop principal =====
@@ -67,11 +71,6 @@ while game:
             game = False
         if event.type == pygame.KEYDOWN:
             game = False
-
-    if pista.rect.y == 40:
-        pista = Pista(pista_img)
-        all_pistas.add(pista)
-        all_sprites.add(pista)
 
     all_pistas.update()
     all_sprites.update()
