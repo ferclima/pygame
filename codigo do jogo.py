@@ -15,6 +15,7 @@ pygame.display.set_caption('Carros 5')
 clock = pygame.time.Clock()
 FPS = 30
 game = True
+paisagem_img = pygame.image.load('Paisagem2..png').convert_alpha()
 pista_img = pygame.image.load('Mini pista.png').convert_alpha()
 carro_img = pygame.image.load('Carrinho v1.png').convert_alpha()
 carro_img = pygame.transform.scale(carro_img, (50, 38))
