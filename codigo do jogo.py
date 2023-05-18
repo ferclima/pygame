@@ -17,10 +17,19 @@ FPS = 30
 game = True
 paisagem_img = pygame.image.load('Paisagem2..png').convert_alpha()
 pista_img = pygame.image.load('Mini pista.png').convert_alpha()
-carro_img = pygame.image.load('obstaculo 1.png').convert_alpha()
-carro_img = pygame.transform.scale(carro_img, (35, 50))
-npc_img = pygame.image.load('obstaculo 2.png').convert_alpha()
-npc_img = pygame.transform.scale(npc_img, (35, 50))
+carro_img = pygame.image.load('carrinho2-removebg-preview.png').convert_alpha()
+carro_img = pygame.transform.scale(carro_img, (27, 50))
+
+npc_img1 = pygame.image.load('obstaculo 1.png').convert_alpha()
+npc_img1 = pygame.transform.scale(npc_img1, (35, 50))
+npc_img2 = pygame.image.load('obstaculo 2.png').convert_alpha()
+npc_img2 = pygame.transform.scale(npc_img2, (35, 50))
+npc_img3 = pygame.image.load('obstaculo 3.png').convert_alpha()
+npc_img3 = pygame.transform.scale(npc_img3, (35, 50))
+npc_img4 = pygame.image.load('obstaculo 4.png').convert_alpha()
+npc_img4 = pygame.transform.scale(npc_img4, (35, 50))
+
+lista_img_npcs = [npc_img1, npc_img2, npc_img3, npc_img4]
 
 posicoes_iniciais = [175, 225, 275, 325]
 
@@ -104,7 +113,7 @@ for i in range(16):
     all_sprites.add(pista)
 
 for l in range(10):
-    npc = NPC(npc_img)
+    npc = NPC(lista_img_npcs[random.randint(0,3)])
     all_npcs.add(npc)
     all_sprites.add(npc)
 
