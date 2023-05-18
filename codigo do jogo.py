@@ -50,7 +50,7 @@ class Pista(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH/2
         self.speedx = 0
-        self.speedy = 4
+        self.speedy = 8
 
     def update(self):
         # Atualizando a posição do meteoro
