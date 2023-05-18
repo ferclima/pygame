@@ -144,6 +144,9 @@ while game:
             if event.key == pygame.K_DOWN:
                 carro.speedy -= 4
 
+    if carro.rect.centerx > 354 or carro.rect.centerx < 146:
+        game = False 
+
 
     all_pistas.update()
     all_npcs.update()
