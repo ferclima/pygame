@@ -144,9 +144,13 @@ while game:
             if event.key == pygame.K_DOWN:
                 carro.speedy -= 4
 
+    hits = pygame.sprite.spritecollide(carro, all_npcs, True)
+
     if carro.rect.centerx > 354 or carro.rect.centerx < 146:
         game = False 
-
+    
+    if len(hits) > 0:
+        game = False 
 
     all_pistas.update()
     all_npcs.update()
