@@ -129,6 +129,8 @@ while game:
                 carro.speedx += 4
             if event.key == pygame.K_UP:
                 carro.speedy -= 8
+            if event.key == pygame.K_DOWN:
+                carro.speedy += 1
 
         # Verifica se soltou alguma tecla.
         if event.type == pygame.KEYUP:
@@ -139,6 +141,8 @@ while game:
                 carro.speedx -= 4
             if event.key == pygame.K_UP:
                 carro.speedy += 8
+            if event.key == pygame.K_DOWN:
+                carro.speedy -= 1
 
 
     all_pistas.update()
