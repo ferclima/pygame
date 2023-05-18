@@ -42,7 +42,7 @@ class Pista(pygame.sprite.Sprite):
         # Se o meteoro passar do final da tela, volta para cima e sorteia
         # novas posições e velocidades
         if self.rect.y > HEIGHT:
-            self.rect.y = -40
+            self.rect.y = -39
 
 class Carro(pygame.sprite.Sprite):
     def __init__(self, img):
