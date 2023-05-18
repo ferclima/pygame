@@ -108,7 +108,7 @@ class NPC(pygame.sprite.Sprite):
         # Mantem dentro da tela
         if self.rect.y > HEIGHT:
             self.rect.centerx = posicoesx_iniciais[random.randint(0,3)]
-            self.rect.bottom = posicoesy_iniciais[random.randint(0,len(posicoesy_iniciais))]
+            self.rect.bottom = posicoesy_iniciais[random.randint(0,((len(posicoesy_iniciais))-1))]
 
 all_sprites = pygame.sprite.Group()
 all_pistas = pygame.sprite.Group()
