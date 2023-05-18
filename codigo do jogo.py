@@ -85,8 +85,8 @@ class Carro(pygame.sprite.Sprite):
             self.rect.left = 0
         if self.rect.bottom > HEIGHT:
             self.rect.bottom = HEIGHT
-        if self.rect.top < HEIGHT/2:
-            self.rect.top = HEIGHT/2
+        if self.rect.top < 200:
+            self.rect.top = 200
 
 class NPC(pygame.sprite.Sprite):
     def __init__(self, img):
