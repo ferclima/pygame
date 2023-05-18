@@ -2,6 +2,7 @@
 # ----- Importa e inicia pacotes
 import pygame
 import random
+import numpy as np
 
 pygame.init()
 
@@ -15,23 +16,30 @@ pygame.display.set_caption('Carros 5')
 clock = pygame.time.Clock()
 FPS = 30
 game = True
+WIDTH_CARRO = 27
+HEIGHT_CARRO = 50
+WIDTH_NPC = 35
+HEIGHT_NPC = 50
+WIDTH_PISTA = 208
+HEIGHT_PISTA = 40
 paisagem_img = pygame.image.load('Paisagem2..png').convert_alpha()
 pista_img = pygame.image.load('Mini pista.png').convert_alpha()
 carro_img = pygame.image.load('carrinho2-removebg-preview.png').convert_alpha()
-carro_img = pygame.transform.scale(carro_img, (27, 50))
+carro_img = pygame.transform.scale(carro_img, (WIDTH_CARRO, HEIGHT_CARRO))
 
 npc_img1 = pygame.image.load('obstaculo 1.png').convert_alpha()
-npc_img1 = pygame.transform.scale(npc_img1, (35, 50))
+npc_img1 = pygame.transform.scale(npc_img1, (WIDTH_NPC, HEIGHT_CARRO))
 npc_img2 = pygame.image.load('obstaculo 2.png').convert_alpha()
-npc_img2 = pygame.transform.scale(npc_img2, (35, 50))
+npc_img2 = pygame.transform.scale(npc_img2, (WIDTH_NPC, HEIGHT_NPC))
 npc_img3 = pygame.image.load('obstaculo 3.png').convert_alpha()
-npc_img3 = pygame.transform.scale(npc_img3, (35, 50))
+npc_img3 = pygame.transform.scale(npc_img3, (WIDTH_NPC, HEIGHT_NPC))
 npc_img4 = pygame.image.load('obstaculo 4.png').convert_alpha()
-npc_img4 = pygame.transform.scale(npc_img4, (35, 50))
+npc_img4 = pygame.transform.scale(npc_img4, (WIDTH_NPC, HEIGHT_NPC))
 
 lista_img_npcs = [npc_img1, npc_img2, npc_img3, npc_img4]
 
-posicoes_iniciais = [175, 225, 275, 325]
+posicoesx_iniciais = [175, 225, 275, 325]
+posicoesy_iniciais = np.arange(-900, 0, 70)
 
 class Pista(pygame.sprite.Sprite):
     def __init__(self, img):
@@ -89,8 +97,8 @@ class NPC(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.speedx = 0
         self.speedy = 3
-        self.rect.centerx = posicoes_iniciais[random.randint(0,3)]
-        self.rect.bottom = random.randint(-900, 0)
+        self.rect.centerx = posicoesx_iniciais[random.randint(0,3)]
+        self.rect.bottom = posicoesy_iniciais[random.randint(0,(len(posicoesy_iniciais)-1))]
 
     def update(self):
         # Atualização da posição da nave
@@ -99,8 +107,8 @@ class NPC(pygame.sprite.Sprite):
 
         # Mantem dentro da tela
         if self.rect.y > HEIGHT:
-            self.rect.centerx = posicoes_iniciais[random.randint(0,3)]
-            self.rect.bottom = random.randint(-900, 0)
+            self.rect.centerx = posicoesx_iniciais[random.randint(0,3)]
+            self.rect.bottom = posicoesy_iniciais[random.randint(0,len(posicoesy_iniciais))]
 
 all_sprites = pygame.sprite.Group()
 all_pistas = pygame.sprite.Group()
