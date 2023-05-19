@@ -119,16 +119,15 @@ class Fundo(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = 0
         self.speedx = 0
-        self.speedy = 8
+        self.speedy = 14
 
     def update(self):
-        # Atualizando a posição do meteoro
+
         self.rect.x += self.speedx
         self.rect.y += self.speedy
-        # Se o meteoro passar do final da tela, volta para cima e sorteia
-        # novas posições e velocidades
-        if self.rect.y > HEIGHT:
-            self.rect.y = -HEIGHT
+
+        if self.rect.y > (2*HEIGHT):
+            self.rect.y = -HEIGHT+2
 
 
 all_sprites = pygame.sprite.Group()
