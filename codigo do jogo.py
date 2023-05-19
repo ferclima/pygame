@@ -39,7 +39,7 @@ npc_img4 = pygame.transform.scale(npc_img4, (WIDTH_NPC, HEIGHT_NPC))
 lista_img_npcs = [npc_img1, npc_img2, npc_img3, npc_img4]
 
 posicoesx_iniciais = [175, 225, 275, 325]
-posicoesy_iniciais = np.arange(-900, 0, 100)
+posicoesy_iniciais = [0, -100, -200, -300, -400, -500, -600, -700, -800, -900]
 
 class Pista(pygame.sprite.Sprite):
     def __init__(self, img):
@@ -98,17 +98,17 @@ class NPC(pygame.sprite.Sprite):
         self.speedx = 0
         self.speedy = 3
         self.rect.centerx = posicoesx_iniciais[random.randint(0,3)]
-        self.rect.bottom = posicoesy_iniciais[random.randint(0,((len(posicoesy_iniciais))-1))]
+        self.rect.bottom = posicoesy_iniciais[random.randint(0,9)]
 
     def update(self):
         # Atualização da posição da nave
         self.rect.x += self.speedx
         self.rect.y += self.speedy 
 
-        # Mantem dentro da tela
+
         if self.rect.y > HEIGHT:
             self.rect.centerx = posicoesx_iniciais[random.randint(0,3)]
-            self.rect.bottom = posicoesy_iniciais[random.randint(0,((len(posicoesy_iniciais))-1))]
+            self.rect.bottom = posicoesy_iniciais[random.randint(0,9)]
 
 all_sprites = pygame.sprite.Group()
 all_pistas = pygame.sprite.Group()
