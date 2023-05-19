@@ -110,9 +110,40 @@ class NPC(pygame.sprite.Sprite):
             self.rect.centerx = posicoesx_iniciais[random.randint(0,3)]
             self.rect.bottom = posicoesy_iniciais[random.randint(0,9)]
 
+class Fundo(pygame.sprite.Sprite):
+    def __init__(self, img):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.x = 0
+        self.speedx = 0
+        self.speedy = 8
+
+    def update(self):
+        # Atualizando a posição do meteoro
+        self.rect.x += self.speedx
+        self.rect.y += self.speedy
+        # Se o meteoro passar do final da tela, volta para cima e sorteia
+        # novas posições e velocidades
+        if self.rect.y > HEIGHT:
+            self.rect.y = -HEIGHT
+
+
 all_sprites = pygame.sprite.Group()
 all_pistas = pygame.sprite.Group()
 all_npcs = pygame.sprite.Group()
+
+fundo_1 = Fundo(paisagem_img)
+fundo_1.rect.y = -HEIGHT
+all_sprites.add(fundo_1)
+fundo_2 = Fundo(paisagem_img)
+fundo_2.rect.y = 0
+all_sprites.add(fundo_2)
+fundo_3 = Fundo(paisagem_img)
+fundo_3.rect.y = HEIGHT
+all_sprites.add(fundo_3)
 
 for i in range(16):
     pista = Pista(pista_img)
@@ -176,7 +207,6 @@ while game:
     # ----- Gera saídas
 
     window.fill((150, 0, 0))  # Preenche com a cor branca
-    window.blit(paisagem_img, (0, 0))
     
     all_sprites.draw(window)
 
