@@ -205,14 +205,14 @@ while game:
     all_pistas.update()
     all_npcs.update()
     all_sprites.update()
-    Pontuacao += 1e-4
+    Pontuacao += 1
 
     # ----- Gera saídas
 
     window.fill((150, 0, 0))  # Preenche com a cor branca
     all_sprites.draw(window)
     
-    text_surface = Fonte.render("{0:5f}".format(Pontuacao), True, (255, 255, 0))
+    text_surface = Fonte.render("{:08}".format(Pontuacao), True, (100, 100, 255))
     text_rect = text_surface.get_rect()
     text_rect.midtop = (WIDTH / 2,  10)
     window.blit(text_surface, text_rect)
