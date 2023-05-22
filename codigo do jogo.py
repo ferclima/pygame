@@ -46,7 +46,7 @@ posicoesy_iniciais = [0, -100, -200, -300, -400, -500, -600, -700, -800, -900]
 
 class Pista(pygame.sprite.Sprite):
     def __init__(self, img):
-        # Construtor da classe mãe (Sprite).
+
         pygame.sprite.Sprite.__init__(self)
 
         self.image = img
@@ -56,17 +56,16 @@ class Pista(pygame.sprite.Sprite):
         self.speedy = 8
 
     def update(self):
-        # Atualizando a posição do meteoro
+
         self.rect.x += self.speedx
         self.rect.y += self.speedy
-        # Se o meteoro passar do final da tela, volta para cima e sorteia
-        # novas posições e velocidades
+
         if self.rect.y > HEIGHT:
             self.rect.y = -39
 
 class Carro(pygame.sprite.Sprite):
     def __init__(self, img):
-        # Construtor da classe mãe (Sprite).
+
         pygame.sprite.Sprite.__init__(self)
 
         self.image = img
@@ -77,11 +76,11 @@ class Carro(pygame.sprite.Sprite):
         self.rect.bottom = HEIGHT - 100
 
     def update(self):
-        # Atualização da posição da nave
+
         self.rect.x += self.speedx
         self.rect.y += self.speedy 
 
-        # Mantem dentro da tela
+
         if self.rect.right > WIDTH:
             self.rect.right = WIDTH
         if self.rect.left < 0:
@@ -93,7 +92,7 @@ class Carro(pygame.sprite.Sprite):
 
 class NPC(pygame.sprite.Sprite):
     def __init__(self, img):
-        # Construtor da classe mãe (Sprite).
+
         pygame.sprite.Sprite.__init__(self)
 
         self.image = img
@@ -104,7 +103,7 @@ class NPC(pygame.sprite.Sprite):
         self.rect.bottom = posicoesy_iniciais[random.randint(0,9)]
 
     def update(self):
-        # Atualização da posição da nave
+
         self.rect.x += self.speedx
         self.rect.y += self.speedy 
 
