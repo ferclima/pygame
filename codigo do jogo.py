@@ -27,6 +27,8 @@ pista_img = pygame.image.load('Imagens\Mini pista.png').convert_alpha()
 carro_img = pygame.image.load('Imagens\carrinho2-removebg-preview.png').convert_alpha()
 carro_img = pygame.transform.scale(carro_img, (WIDTH_CARRO, HEIGHT_CARRO))
 
+Fonte = pygame.font.Font('fonte\PressStart2P.ttf', 28)
+
 npc_img1 = pygame.image.load('Imagens\obstaculo 1.png').convert_alpha()
 npc_img1 = pygame.transform.scale(npc_img1, (WIDTH_NPC, HEIGHT_CARRO))
 npc_img2 = pygame.image.load('Imagens\obstaculo 2.png').convert_alpha()
@@ -157,6 +159,8 @@ for l in range(8):
 carro = Carro(carro_img)
 all_sprites.add(carro)
 
+Pontuacao = 0
+
 # ===== Loop principal =====
 while game:
     clock.tick(FPS)
@@ -201,13 +205,18 @@ while game:
     all_pistas.update()
     all_npcs.update()
     all_sprites.update()
+    Pontuacao += 1e-4
 
     # ----- Gera saídas
 
     window.fill((150, 0, 0))  # Preenche com a cor branca
-    
     all_sprites.draw(window)
-
+    
+    text_surface = Fonte.render("{0:5f}".format(Pontuacao), True, (255, 255, 0))
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (WIDTH / 2,  10)
+    window.blit(text_surface, text_rect)
+    
     # ----- Atualiza estado do jogo
     pygame.display.update()  # Mostra o novo frame para o jogador
 
