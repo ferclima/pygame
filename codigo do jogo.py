@@ -3,8 +3,14 @@
 import pygame
 import random
 import numpy as np
+from pygame import mixer
 
 pygame.init()
+mixer.init()
+
+# ===== Loading dos sons do carro
+carro_correndo = mixer.music.load('carro-correndo-loop.mp3')
+carro_batida = mixer.music.load('carro-explosao.mp3')
 
 # ----- Gera tela principal
 WIDTH = 500
@@ -176,6 +182,10 @@ Pontuacao = 0
 while game:
     clock.tick(FPS)
 
+
+    # ----- SOM
+    mixer.music.play(carro_correndo)
+
     # ----- Trata eventos
     for event in pygame.event.get():
         # ----- Verifica consequências
@@ -208,9 +218,13 @@ while game:
     hits = pygame.sprite.spritecollide(carro, all_npcs, True)
 
     if carro.rect.centerx > 354 or carro.rect.centerx < 146:
+        mixer.music.stop(carro_correndo)
+        mixer.music.play(carro_batida)
         game = False 
     
     if len(hits) > 0:
+        mixer.music.stop(carro_correndo)
+        mixer.music.play(carro_batida)
         game = False 
 
     all_pistas.update()
