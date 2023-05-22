@@ -3,14 +3,16 @@
 import pygame
 import random
 import numpy as np
-from pygame import mixer
 
 pygame.init()
-mixer.init()
+pygame.mixer.init()
 
 # ===== Loading dos sons do carro
-carro_correndo = mixer.music.load('carro-correndo-loop.mp3')
-carro_batida = mixer.music.load('carro-explosao.mp3')
+pygame.mixer.music.load('Sons\carro-correndo-loop.mp3')
+pygame.mixer.music.set_volume(0.4)
+pygame.mixer.music.load('Sons\carro-explosao.mp3')
+carro_correndo = pygame.mixer.Sound('Sons\carro-correndo-loop.mp3')
+carro_batida = pygame.mixer.Sound('Sons\carro-explosao.mp3')
 
 # ----- Gera tela principal
 WIDTH = 500
@@ -55,8 +57,8 @@ posicoesy_iniciais = [0, -100, -200, -300, -400, -500, -600, -700, -800, -900]
 explosion_anim = []
 for i in range(9):
     # Os arquivos de animação são numerados de 00 a 08
-    filename = 'Explosão\regularExplosion0{}.png'.format(i)
-    img = pygame.image.load(filename).convert()
+    filename = "Explosão\Explosion0{}.png".format(i)
+    img = pygame.image.load(filename).convert_alpha()
     img = pygame.transform.scale(img, (32, 32))
     explosion_anim.append(img)
 assets["explosion_anim"] = explosion_anim
@@ -179,12 +181,13 @@ all_sprites.add(carro)
 Pontuacao = 0
 
 # ===== Loop principal =====
+pygame.mixer.music.play(loops=-1)
 while game:
     clock.tick(FPS)
 
 
     # ----- SOM
-    mixer.music.play(carro_correndo)
+    carro_correndo.play()
 
     # ----- Trata eventos
     for event in pygame.event.get():
@@ -218,13 +221,13 @@ while game:
     hits = pygame.sprite.spritecollide(carro, all_npcs, True)
 
     if carro.rect.centerx > 354 or carro.rect.centerx < 146:
-        mixer.music.stop(carro_correndo)
-        mixer.music.play(carro_batida)
+        #pygame.mixer.music.stop(carro_correndo)
+        carro_batida.play()
         game = False 
     
     if len(hits) > 0:
-        mixer.music.stop(carro_correndo)
-        mixer.music.play(carro_batida)
+        #pygame.mixer.music.stop(carro_correndo)
+        carro_batida.play()
         game = False 
 
     all_pistas.update()
