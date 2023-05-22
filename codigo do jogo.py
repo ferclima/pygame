@@ -96,7 +96,7 @@ class NPC(pygame.sprite.Sprite):
         self.image = img
         self.rect = self.image.get_rect()
         self.speedx = 0
-        self.speedy = 3
+        self.speedy = random.randint(3,6)
         self.rect.centerx = posicoesx_iniciais[random.randint(0,3)]
         self.rect.bottom = posicoesy_iniciais[random.randint(0,9)]
 
