@@ -269,12 +269,16 @@ while game:
     hits = pygame.sprite.spritecollide(carro, all_npcs, True)
 
     if carro.rect.centerx > 354 or carro.rect.centerx < 146:
+        explosao = Explosion(carro.rect.center, assets)
+        all_sprites.add(explosao)
         carro_correndo.stop()
         carro_batida.play()
         time.sleep(1.5)
         game = False 
     
     if len(hits) > 0:
+        explosao = Explosion(carro.rect.center, assets)
+        all_sprites.add(explosao)
         carro_correndo.stop()
         carro_batida.play()
         time.sleep(1.5)
