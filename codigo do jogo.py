@@ -27,7 +27,7 @@ pista_img = pygame.image.load('Imagens\Mini pista.png').convert_alpha()
 carro_img = pygame.image.load('Imagens\carrinho2-removebg-preview.png').convert_alpha()
 carro_img = pygame.transform.scale(carro_img, (WIDTH_CARRO, HEIGHT_CARRO))
 
-Fonte = pygame.font.Font('fonte\PressStart2P.ttf', 28)
+Fonte = pygame.font.Font('fonte\PressStart2P.ttf', 25)
 
 npc_img1 = pygame.image.load('Imagens\obstaculo 1.png').convert_alpha()
 npc_img1 = pygame.transform.scale(npc_img1, (WIDTH_NPC, HEIGHT_CARRO))
@@ -212,7 +212,7 @@ while game:
     window.fill((150, 0, 0))  # Preenche com a cor branca
     all_sprites.draw(window)
     
-    text_surface = Fonte.render("{:08}".format(Pontuacao), True, (100, 100, 255))
+    text_surface = Fonte.render("{:08}".format(Pontuacao), True, (255, 255, 255))
     text_rect = text_surface.get_rect()
     text_rect.midtop = (WIDTH / 2,  10)
     window.blit(text_surface, text_rect)
