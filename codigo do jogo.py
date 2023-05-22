@@ -214,7 +214,7 @@ while game:
     
     text_surface = Fonte.render("{:08}".format(Pontuacao), True, (255, 255, 255))
     text_rect = text_surface.get_rect()
-    text_rect.midtop = (WIDTH / 2,  10)
+    text_rect.midtop = (((WIDTH / 2)+2),  10)
     window.blit(text_surface, text_rect)
     
     # ----- Atualiza estado do jogo
