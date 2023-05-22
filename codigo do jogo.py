@@ -49,7 +49,7 @@ posicoesy_iniciais = [0, -100, -200, -300, -400, -500, -600, -700, -800, -900]
 explosion_anim = []
 for i in range(9):
     # Os arquivos de animação são numerados de 00 a 08
-    filename = 'assets/img/regularExplosion0{}.png'.format(i)
+    filename = 'Explosão\regularExplosion0{}.png'.format(i)
     img = pygame.image.load(filename).convert()
     img = pygame.transform.scale(img, (32, 32))
     explosion_anim.append(img)
