@@ -23,6 +23,7 @@ HEIGHT_NPC = 50
 WIDTH_PISTA = 208
 HEIGHT_PISTA = 40
 paisagem_img = pygame.image.load('Imagens\Paisagem2..png').convert_alpha()
+paisagem_img = pygame.transform.scale(paisagem_img, (WIDTH, HEIGHT))
 pista_img = pygame.image.load('Imagens\Mini pista.png').convert_alpha()
 carro_img = pygame.image.load('Imagens\carrinho2-removebg-preview.png').convert_alpha()
 carro_img = pygame.transform.scale(carro_img, (WIDTH_CARRO, HEIGHT_CARRO))
@@ -128,7 +129,7 @@ class Fundo(pygame.sprite.Sprite):
         self.rect.y += self.speedy
 
         if self.rect.y > (2*HEIGHT):
-            self.rect.y = -HEIGHT+2
+            self.rect.y = -HEIGHT
 
 
 all_sprites = pygame.sprite.Group()
