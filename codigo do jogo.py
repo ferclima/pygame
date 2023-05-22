@@ -28,6 +28,8 @@ WIDTH_NPC = 27
 HEIGHT_NPC = 50
 WIDTH_PISTA = 208
 HEIGHT_PISTA = 40
+
+assets = {}
 paisagem_img = pygame.image.load('Imagens\Paisagem2..png').convert_alpha()
 paisagem_img = pygame.transform.scale(paisagem_img, (WIDTH, HEIGHT))
 pista_img = pygame.image.load('Imagens\Mini pista.png').convert_alpha()
@@ -49,6 +51,15 @@ lista_img_npcs = [npc_img1, npc_img2, npc_img3, npc_img4]
 
 posicoesx_iniciais = [175, 225, 275, 325]
 posicoesy_iniciais = [0, -100, -200, -300, -400, -500, -600, -700, -800, -900]
+
+explosion_anim = []
+for i in range(9):
+    # Os arquivos de animação são numerados de 00 a 08
+    filename = 'assets/img/regularExplosion0{}.png'.format(i)
+    img = pygame.image.load(filename).convert()
+    img = pygame.transform.scale(img, (32, 32))
+    explosion_anim.append(img)
+assets["explosion_anim"] = explosion_anim
 
 class Pista(pygame.sprite.Sprite):
     def __init__(self, img):
