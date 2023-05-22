@@ -22,7 +22,7 @@ pygame.display.set_caption('Carros 5')
 
 # ----- Inicia estruturas de dados
 clock = pygame.time.Clock()
-FPS = 30
+FPS = 50
 game = True
 WIDTH_CARRO = 27
 HEIGHT_CARRO = 50
@@ -69,6 +69,7 @@ class Pista(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = img
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH/2
         self.speedx = 0
@@ -88,6 +89,7 @@ class Carro(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = img
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.speedx = 0
         self.speedy = 4
@@ -115,6 +117,7 @@ class NPC(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = img
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.speedx = 0
         self.speedy = random.randint(1,4)
@@ -136,6 +139,7 @@ class Fundo(pygame.sprite.Sprite):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
         self.image = img
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = 0
         self.speedx = 0
@@ -160,7 +164,8 @@ class Explosion(pygame.sprite.Sprite):
 
         # Inicia o processo de animação colocando a primeira imagem na tela.
         self.frame = 0  # Armazena o índice atual na animação
-        self.image = self.explosion_anim[self.frame]  # Pega a primeira imagem
+        self.image = self.explosion_anim[self.frame]
+        self.mask = pygame.mask.from_surface(self.image)  # Pega a primeira imagem
         self.rect = self.image.get_rect()
         self.rect.center = center  # Posiciona o centro da imagem
 
@@ -266,7 +271,7 @@ while game:
             if event.key == pygame.K_DOWN:
                 carro.speedy -= 4
 
-    hits = pygame.sprite.spritecollide(carro, all_npcs, True)
+    hits = pygame.sprite.spritecollide(carro, all_npcs, True, pygame.sprite.collide_mask)
 
     if carro.rect.centerx > 354 or carro.rect.centerx < 146:
         explosao = Explosion(carro.rect.center, assets)
