@@ -23,9 +23,12 @@ HEIGHT_NPC = 50
 WIDTH_PISTA = 208
 HEIGHT_PISTA = 40
 paisagem_img = pygame.image.load('Imagens\Paisagem2..png').convert_alpha()
+paisagem_img = pygame.transform.scale(paisagem_img, (WIDTH, HEIGHT))
 pista_img = pygame.image.load('Imagens\Mini pista.png').convert_alpha()
 carro_img = pygame.image.load('Imagens\carrinho2-removebg-preview.png').convert_alpha()
 carro_img = pygame.transform.scale(carro_img, (WIDTH_CARRO, HEIGHT_CARRO))
+
+Fonte = pygame.font.Font('fonte\PressStart2P.ttf', 25)
 
 npc_img1 = pygame.image.load('Imagens\obstaculo 1.png').convert_alpha()
 npc_img1 = pygame.transform.scale(npc_img1, (WIDTH_NPC, HEIGHT_CARRO))
@@ -96,7 +99,7 @@ class NPC(pygame.sprite.Sprite):
         self.image = img
         self.rect = self.image.get_rect()
         self.speedx = 0
-        self.speedy = 3
+        self.speedy = random.randint(1,4)
         self.rect.centerx = posicoesx_iniciais[random.randint(0,3)]
         self.rect.bottom = posicoesy_iniciais[random.randint(0,9)]
 
@@ -126,7 +129,7 @@ class Fundo(pygame.sprite.Sprite):
         self.rect.y += self.speedy
 
         if self.rect.y > (2*HEIGHT):
-            self.rect.y = -HEIGHT+2
+            self.rect.y = -HEIGHT
 
 
 all_sprites = pygame.sprite.Group()
@@ -149,13 +152,15 @@ for i in range(16):
     all_pistas.add(pista)
     all_sprites.add(pista)
 
-for l in range(10):
+for l in range(8):
     npc = NPC(lista_img_npcs[random.randint(0,3)])
     all_npcs.add(npc)
     all_sprites.add(npc)
 
 carro = Carro(carro_img)
 all_sprites.add(carro)
+
+Pontuacao = 0
 
 # ===== Loop principal =====
 while game:
@@ -201,13 +206,18 @@ while game:
     all_pistas.update()
     all_npcs.update()
     all_sprites.update()
+    Pontuacao += 1
 
     # ----- Gera saídas
 
     window.fill((150, 0, 0))  # Preenche com a cor branca
-    
     all_sprites.draw(window)
-
+    
+    text_surface = Fonte.render("{:08}".format(Pontuacao), True, (255, 255, 255))
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (((WIDTH / 2)+2),  10)
+    window.blit(text_surface, text_rect)
+    
     # ----- Atualiza estado do jogo
     pygame.display.update()  # Mostra o novo frame para o jogador
 
