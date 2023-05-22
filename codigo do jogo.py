@@ -96,7 +96,7 @@ class NPC(pygame.sprite.Sprite):
         self.image = img
         self.rect = self.image.get_rect()
         self.speedx = 0
-        self.speedy = random.randint(3,6)
+        self.speedy = random.randint(1,4)
         self.rect.centerx = posicoesx_iniciais[random.randint(0,3)]
         self.rect.bottom = posicoesy_iniciais[random.randint(0,9)]
 
@@ -149,7 +149,7 @@ for i in range(16):
     all_pistas.add(pista)
     all_sprites.add(pista)
 
-for l in range(10):
+for l in range(8):
     npc = NPC(lista_img_npcs[random.randint(0,3)])
     all_npcs.add(npc)
     all_sprites.add(npc)
