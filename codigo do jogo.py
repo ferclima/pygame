@@ -3,6 +3,7 @@
 import pygame
 import random
 import numpy as np
+import time
 
 pygame.init()
 pygame.mixer.init()
@@ -269,13 +270,15 @@ while game:
     hits = pygame.sprite.spritecollide(carro, all_npcs, True)
 
     if carro.rect.centerx > 354 or carro.rect.centerx < 146:
-        #pygame.mixer.music.stop(carro_correndo)
+        carro_correndo.stop()
         carro_batida.play()
+        time.sleep(2)
         game = False 
     
     if len(hits) > 0:
-        #pygame.mixer.music.stop(carro_correndo)
+        carro_correndo.stop()
         carro_batida.play()
+        time.sleep(2)
         game = False 
 
     all_pistas.update()
