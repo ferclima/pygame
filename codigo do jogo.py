@@ -272,13 +272,13 @@ while game:
     if carro.rect.centerx > 354 or carro.rect.centerx < 146:
         carro_correndo.stop()
         carro_batida.play()
-        time.sleep(2)
+        time.sleep(1.5)
         game = False 
     
     if len(hits) > 0:
         carro_correndo.stop()
         carro_batida.play()
-        time.sleep(2)
+        time.sleep(1.5)
         game = False 
 
     all_pistas.update()
