@@ -233,14 +233,14 @@ all_sprites.add(carro)
 
 Pontuacao = 0
 
+PLAYING = 1
+EXPLODING = 2
+state = PLAYING
+
 # ===== Loop principal =====
-pygame.mixer.music.play(loops=-1)
+#pygame.mixer.music.play(loops=-1)
 while game:
     clock.tick(FPS)
-
-
-    # ----- SOM
-    carro_correndo.play()
 
     # ----- Trata eventos
     for event in pygame.event.get():
@@ -256,6 +256,7 @@ while game:
                 carro.speedx += 4
             if event.key == pygame.K_UP:
                 carro.speedy -= 8
+                carro_correndo.play()
             if event.key == pygame.K_DOWN:
                 carro.speedy += 4
 
@@ -268,35 +269,48 @@ while game:
                 carro.speedx -= 4
             if event.key == pygame.K_UP:
                 carro.speedy += 8
+                carro_correndo.stop()
             if event.key == pygame.K_DOWN:
                 carro.speedy -= 4
-
-    hits = pygame.sprite.spritecollide(carro, all_npcs, True, pygame.sprite.collide_mask)
-
-    if carro.rect.centerx > 354 or carro.rect.centerx < 146:
-        explosao = Explosion(carro.rect.center, assets)
-        all_sprites.add(explosao)
-        carro_correndo.stop()
-        carro_batida.play()
-        time.sleep(1.5)
-        game = False 
-    
-    if len(hits) > 0:
-        explosao = Explosion(carro.rect.center, assets)
-        all_sprites.add(explosao)
-        carro_correndo.stop()
-        carro_batida.play()
-        time.sleep(1.5)
-        game = False 
-
+        
     all_pistas.update()
     all_npcs.update()
     all_sprites.update()
     Pontuacao += 1
 
+    if state == PLAYING:
+
+        hits = pygame.sprite.spritecollide(carro, all_npcs, True, pygame.sprite.collide_mask)
+
+        if carro.rect.centerx > 354 or carro.rect.centerx < 146:
+            explosao = Explosion(carro.rect.center, assets)
+            all_sprites.add(explosao)
+            carro_correndo.stop()
+            carro_batida.play()
+            time.sleep(1.5)
+            game = False 
+    
+        if len(hits) > 0:
+            carro_correndo.stop()
+            carro_batida.play()
+            carro.kill()
+            explosao = Explosion(carro.rect.center, assets)
+            all_sprites.add(explosao)
+            state = EXPLODING
+            keys_down = {}
+            explosion_tick = pygame.time.get_ticks()
+            explosion_duration = explosao.frame_ticks * len(explosao.explosion_anim) + 400
+
+    elif state == EXPLODING:
+        now = pygame.time.get_ticks()
+        if now - explosion_tick > explosion_duration:
+            carro_batida.play()
+            time.sleep(0.1)
+            game = False        
+
     # ----- Gera saídas
 
-    window.fill((150, 0, 0))  # Preenche com a cor branca
+    window.fill((0, 150, 0))  # Preenche com a cor verde
     all_sprites.draw(window)
     
     text_surface = Fonte.render("{:08}".format(Pontuacao), True, (255, 255, 255))
