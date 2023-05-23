@@ -305,6 +305,7 @@ while game:
         now = pygame.time.get_ticks()
         if now - explosion_tick > explosion_duration:
             carro_batida.play()
+            time.sleep(0.1)
             game = False        
 
     # ----- Gera saídas
