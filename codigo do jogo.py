@@ -25,8 +25,11 @@ WIDTH_PISTA = 208
 HEIGHT_PISTA = 40
 
 assets = {}
-assets['paisagem'] = pygame.image.load('Imagens\Paisagem2..png').convert_alpha()
-assets['paisagem'] = pygame.transform.scale(assets['paisagem'], (WIDTH, HEIGHT))
+paisagem_1 = pygame.image.load('Imagens\Paisagem2..png').convert_alpha()
+paisagem_1 = pygame.transform.scale(paisagem_1, (WIDTH, HEIGHT))
+paisagem_2 = pygame.image.load('Imagens\paisagem-deserto.png').convert_alpha()
+paisagem_2 = pygame.transform.scale(paisagem_2, (WIDTH, HEIGHT))
+assets['paisagem'] = [paisagem_1, paisagem_2]
 assets['pista'] = pygame.image.load('Imagens\Mini pista.png').convert_alpha()
 assets['carro'] = pygame.image.load('Imagens\carrinho2-removebg-preview.png').convert_alpha()
 assets['carro'] = pygame.transform.scale(assets['carro'], (WIDTH_CARRO, HEIGHT_CARRO))
@@ -57,6 +60,8 @@ assets['batida'] = pygame.mixer.Sound('Sons\carro-explosao2.mp3')
 
 posicoesx_iniciais = [175, 225, 275, 325]
 posicoesy_iniciais = [0, -100, -200, -300, -400, -500, -600, -700, -800, -900]
+
+Pontuacao = 0
 
 
 class Pista(pygame.sprite.Sprite):
@@ -140,7 +145,7 @@ class Fundo(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
 
         pygame.sprite.Sprite.__init__(self)
-        self.image = assets['paisagem']
+        self.image = assets['paisagem'][0]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = 0
@@ -156,6 +161,10 @@ class Fundo(pygame.sprite.Sprite):
 
         if self.rect.y > (2*HEIGHT):
             self.rect.y = -HEIGHT
+
+        if Pontuacao > 2000:
+            self.image = assets['paisagem'][1]
+
 
 class Explosion(pygame.sprite.Sprite):
     # Construtor da classe.
@@ -247,7 +256,6 @@ for l in range(8):
 carro = Carro(groups, assets)
 all_sprites.add(carro)
 
-Pontuacao = 0
 
 PLAYING = 1
 EXPLODING = 2
