@@ -22,7 +22,7 @@ pygame.display.set_caption('Carros 5')
 
 # ----- Inicia estruturas de dados
 clock = pygame.time.Clock()
-FPS = 50
+FPS = 40
 game = True
 WIDTH_CARRO = 27
 HEIGHT_CARRO = 50
