@@ -51,9 +51,9 @@ assets["explosion_anim"] = explosion_anim
 # ===== Loading dos sons do carro
 pygame.mixer.music.load('Sons\carro-correndo-loop.mp3')
 pygame.mixer.music.set_volume(0.4)
-pygame.mixer.music.load('Sons\carro-explosao.mp3')
+#pygame.mixer.music.load('Sons\carro-explosao2.mp3')
 assets['aceleração'] = pygame.mixer.Sound('Sons\carro-correndo-loop.mp3')
-assets['batida'] = pygame.mixer.Sound('Sons\carro-explosao.mp3')
+assets['batida'] = pygame.mixer.Sound('Sons\carro-explosao2.mp3')
 
 posicoesx_iniciais = [175, 225, 275, 325]
 posicoesy_iniciais = [0, -100, -200, -300, -400, -500, -600, -700, -800, -900]
@@ -314,7 +314,6 @@ while game:
         now = pygame.time.get_ticks()
         if now - explosion_tick > explosion_duration:
             assets['batida'].play()
-            time.sleep(0.1)
             game = False        
 
     # ----- Gera saídas
