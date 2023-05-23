@@ -7,18 +7,11 @@ import time
 pygame.init()
 pygame.mixer.init()
 
-# ===== Loading dos sons do carro
-pygame.mixer.music.load('Sons\carro-correndo-loop.mp3')
-pygame.mixer.music.set_volume(0.4)
-pygame.mixer.music.load('Sons\carro-explosao.mp3')
-carro_correndo = pygame.mixer.Sound('Sons\carro-correndo-loop.mp3')
-carro_batida = pygame.mixer.Sound('Sons\carro-explosao.mp3')
-
 # ----- Gera tela principal
 WIDTH = 500
 HEIGHT = 600
 window = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('Carros 5')
+pygame.display.set_caption('Race Mania')
 
 # ----- Inicia estruturas de dados
 clock = pygame.time.Clock()
@@ -32,14 +25,12 @@ WIDTH_PISTA = 208
 HEIGHT_PISTA = 40
 
 assets = {}
-paisagem_img = pygame.image.load('Imagens\Paisagem2..png').convert_alpha()
-paisagem_img = pygame.transform.scale(paisagem_img, (WIDTH, HEIGHT))
-pista_img = pygame.image.load('Imagens\Mini pista.png').convert_alpha()
-carro_img = pygame.image.load('Imagens\carrinho2-removebg-preview.png').convert_alpha()
-carro_img = pygame.transform.scale(carro_img, (WIDTH_CARRO, HEIGHT_CARRO))
-
-Fonte = pygame.font.Font('fonte\PressStart2P.ttf', 25)
-
+assets['paisagem'] = pygame.image.load('Imagens\Paisagem2..png').convert_alpha()
+assets['paisagem'] = pygame.transform.scale(assets['paisagem'], (WIDTH, HEIGHT))
+assets['pista'] = pygame.image.load('Imagens\Mini pista.png').convert_alpha()
+assets['carro'] = pygame.image.load('Imagens\carrinho2-removebg-preview.png').convert_alpha()
+assets['carro'] = pygame.transform.scale(assets['carro'], (WIDTH_CARRO, HEIGHT_CARRO))
+assets['fonte'] = pygame.font.Font('fonte\PressStart2P.ttf', 25)
 npc_img1 = pygame.image.load('Imagens\obstaculo 1.png').convert_alpha()
 npc_img1 = pygame.transform.scale(npc_img1, (WIDTH_NPC, HEIGHT_CARRO))
 npc_img2 = pygame.image.load('Imagens\obstaculo 2.png').convert_alpha()
@@ -48,12 +39,7 @@ npc_img3 = pygame.image.load('Imagens\obstaculo 3.png').convert_alpha()
 npc_img3 = pygame.transform.scale(npc_img3, (WIDTH_NPC, HEIGHT_NPC))
 npc_img4 = pygame.image.load('Imagens\obstaculo 4.png').convert_alpha()
 npc_img4 = pygame.transform.scale(npc_img4, (WIDTH_NPC, HEIGHT_NPC))
-
-lista_img_npcs = [npc_img1, npc_img2, npc_img3, npc_img4]
-
-posicoesx_iniciais = [175, 225, 275, 325]
-posicoesy_iniciais = [0, -100, -200, -300, -400, -500, -600, -700, -800, -900]
-
+assets['NPCs'] = [npc_img1, npc_img2, npc_img3, npc_img4]
 explosion_anim = []
 for i in range(9):
     # Os arquivos de animação são numerados de 00 a 08
@@ -62,18 +48,30 @@ for i in range(9):
     img = pygame.transform.scale(img, (32, 32))
     explosion_anim.append(img)
 assets["explosion_anim"] = explosion_anim
+# ===== Loading dos sons do carro
+pygame.mixer.music.load('Sons\carro-correndo-loop.mp3')
+pygame.mixer.music.set_volume(0.4)
+pygame.mixer.music.load('Sons\carro-explosao.mp3')
+assets['aceleração'] = pygame.mixer.Sound('Sons\carro-correndo-loop.mp3')
+assets['batida'] = pygame.mixer.Sound('Sons\carro-explosao.mp3')
+
+posicoesx_iniciais = [175, 225, 275, 325]
+posicoesy_iniciais = [0, -100, -200, -300, -400, -500, -600, -700, -800, -900]
+
 
 class Pista(pygame.sprite.Sprite):
-    def __init__(self, img):
+    def __init__(self, groups, assets):
 
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = img
-        self.mask = pygame.mask.from_surface(self.image)
+        self.image = assets['pista']
+        #self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH/2
         self.speedx = 0
         self.speedy = 8
+        self.groups = groups
+        self.assets = assets
 
     def update(self):
 
@@ -84,17 +82,19 @@ class Pista(pygame.sprite.Sprite):
             self.rect.y = -39
 
 class Carro(pygame.sprite.Sprite):
-    def __init__(self, img):
+    def __init__(self, groups, assets):
 
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = img
-        self.mask = pygame.mask.from_surface(self.image)
+        self.image = assets['carro']
+        #self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.speedx = 0
         self.speedy = 4
-        self.rect.centerx = WIDTH /2
-        self.rect.bottom = HEIGHT - 100
+        self.rect.centerx = WIDTH/2
+        self.rect.bottom = HEIGHT-100
+        self.groups = groups
+        self.assets = assets
 
     def update(self):
 
@@ -112,17 +112,19 @@ class Carro(pygame.sprite.Sprite):
             self.rect.top = 200
 
 class NPC(pygame.sprite.Sprite):
-    def __init__(self, img):
+    def __init__(self, groups, assets):
 
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = img
-        self.mask = pygame.mask.from_surface(self.image)
+        self.image = assets['NPCs'][random.randint(0,3)]
+        #self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.speedx = 0
         self.speedy = random.randint(1,4)
         self.rect.centerx = posicoesx_iniciais[random.randint(0,3)]
         self.rect.bottom = posicoesy_iniciais[random.randint(0,9)]
+        self.groups = groups
+        self.assets = assets
 
     def update(self):
 
@@ -135,15 +137,17 @@ class NPC(pygame.sprite.Sprite):
             self.rect.bottom = posicoesy_iniciais[random.randint(0,9)]
 
 class Fundo(pygame.sprite.Sprite):
-    def __init__(self, img):
-        # Construtor da classe mãe (Sprite).
+    def __init__(self, groups, assets):
+
         pygame.sprite.Sprite.__init__(self)
-        self.image = img
+        self.image = assets['paisagem']
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = 0
         self.speedx = 0
         self.speedy = 14
+        self.groups = groups
+        self.assets = assets
 
     def update(self):
 
@@ -206,29 +210,41 @@ class Explosion(pygame.sprite.Sprite):
 all_sprites = pygame.sprite.Group()
 all_pistas = pygame.sprite.Group()
 all_npcs = pygame.sprite.Group()
+all_backgrounds = pygame.sprite.Group()
 
-fundo_1 = Fundo(paisagem_img)
+groups = {}
+groups['all_sprites'] = all_sprites
+groups['all_pistas'] = all_pistas
+groups['all_NPCs'] = all_npcs
+groups['all_backgrounds'] = all_backgrounds
+
+fundo_1 = Fundo(groups, assets)
 fundo_1.rect.y = -HEIGHT
+all_backgrounds.add(fundo_1)
 all_sprites.add(fundo_1)
-fundo_2 = Fundo(paisagem_img)
+
+fundo_2 = Fundo(groups, assets)
 fundo_2.rect.y = 0
+all_backgrounds.add(fundo_2)
 all_sprites.add(fundo_2)
-fundo_3 = Fundo(paisagem_img)
+
+fundo_3 = Fundo(groups, assets)
 fundo_3.rect.y = HEIGHT
+all_backgrounds.add(fundo_3)
 all_sprites.add(fundo_3)
 
 for i in range(16):
-    pista = Pista(pista_img)
+    pista = Pista(groups, assets)
     pista.rect.y = 40 * i 
     all_pistas.add(pista)
     all_sprites.add(pista)
 
 for l in range(8):
-    npc = NPC(lista_img_npcs[random.randint(0,3)])
+    npc = NPC(groups, assets)
     all_npcs.add(npc)
     all_sprites.add(npc)
 
-carro = Carro(carro_img)
+carro = Carro(groups, assets)
 all_sprites.add(carro)
 
 Pontuacao = 0
@@ -256,7 +272,7 @@ while game:
                 carro.speedx += 4
             if event.key == pygame.K_UP:
                 carro.speedy -= 8
-                carro_correndo.play()
+                assets['aceleração'].play()
             if event.key == pygame.K_DOWN:
                 carro.speedy += 4
 
@@ -269,30 +285,23 @@ while game:
                 carro.speedx -= 4
             if event.key == pygame.K_UP:
                 carro.speedy += 8
-                carro_correndo.stop()
+                assets['aceleração'].stop()
             if event.key == pygame.K_DOWN:
                 carro.speedy -= 4
         
     all_pistas.update()
     all_npcs.update()
+    all_backgrounds.update()
     all_sprites.update()
     Pontuacao += 1
 
     if state == PLAYING:
 
         hits = pygame.sprite.spritecollide(carro, all_npcs, True, pygame.sprite.collide_mask)
-
-        if carro.rect.centerx > 354 or carro.rect.centerx < 146:
-            explosao = Explosion(carro.rect.center, assets)
-            all_sprites.add(explosao)
-            carro_correndo.stop()
-            carro_batida.play()
-            time.sleep(1.5)
-            game = False 
     
-        if len(hits) > 0:
-            carro_correndo.stop()
-            carro_batida.play()
+        if len(hits) > 0 or carro.rect.centerx > 354 or carro.rect.centerx < 146:
+            assets['aceleração'].stop()
+            assets['batida'].play()
             carro.kill()
             explosao = Explosion(carro.rect.center, assets)
             all_sprites.add(explosao)
@@ -304,7 +313,7 @@ while game:
     elif state == EXPLODING:
         now = pygame.time.get_ticks()
         if now - explosion_tick > explosion_duration:
-            carro_batida.play()
+            assets['batida'].play()
             time.sleep(0.1)
             game = False        
 
@@ -313,7 +322,7 @@ while game:
     window.fill((0, 150, 0))  # Preenche com a cor verde
     all_sprites.draw(window)
     
-    text_surface = Fonte.render("{:08}".format(Pontuacao), True, (255, 255, 255))
+    text_surface = assets['fonte'].render("{:08}".format(Pontuacao), True, (255, 255, 255))
     text_rect = text_surface.get_rect()
     text_rect.midtop = (((WIDTH / 2)+2),  10)
     window.blit(text_surface, text_rect)
