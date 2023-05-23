@@ -2,7 +2,6 @@
 # ----- Importa e inicia pacotes
 import pygame
 import random
-import numpy as np
 import time
 
 pygame.init()
