@@ -1,5 +1,5 @@
 import pygame
-from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED
+from config import FPS, WIDTH, HEIGHT
 from assets import load_assets, BOOM_SOUND, PAISAGEM, SCORE_FONT
 from sprites import Pista, Carro, Fundo, NPC, Explosion
 
@@ -7,6 +7,8 @@ from sprites import Pista, Carro, Fundo, NPC, Explosion
 def game_screen(window):
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
+
+    Pontuacao = 0
 
     assets = load_assets()
 
