@@ -5,7 +5,7 @@ from os import path
 from config import IMG_DIR, FPS, GAME, QUIT
 
 
-def init_screen(screen):
+def quit_screen(screen):
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
 
@@ -24,10 +24,6 @@ def init_screen(screen):
             # Verifica se foi fechado.
             if event.type == pygame.QUIT:
                 state = QUIT
-                running = False
-
-            if event.type == pygame.KEYUP:
-                state = GAME
                 running = False
 
         # A cada loop, redesenha o fundo e os sprites

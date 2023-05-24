@@ -1,5 +1,5 @@
 import pygame
-from config import FPS, WIDTH, HEIGHT
+from config import FPS, WIDTH, HEIGHT, ENDI
 from assets import load_assets, BOOM_SOUND, PAISAGEM, SCORE_FONT
 from sprites import Pista, Carro, Fundo, NPC, Explosion
 
@@ -127,7 +127,8 @@ def game_screen(window):
             now = pygame.time.get_ticks()
             if now - explosion_tick > explosion_duration:
                 assets['batida'].play()
-                game = False        
+                game = False
+                state = ENDI   
                 with open ('PONTUACAO.txt', 'a') as Arquivo:
                     Arquivo.write("{0}, ".format(Pontuacao))
 
