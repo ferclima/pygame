@@ -2,6 +2,7 @@ import random
 import pygame
 from config import WIDTH, HEIGHT, WIDTH_CARRO, HEIGHT_CARRO, WIDTH_NPC, HEIGHT_NPC, WIDTH_PISTA, HEIGHT_PISTA
 from assets import CARRO_IMG,  PISTA_IMG, NPC_IMG, EXPLOSION_ANIM
+#from game_screen import Pontuacao 
 
 posicoesx_iniciais = [175, 225, 275, 325]
 posicoesy_iniciais = [0, -100, -200, -300, -400, -500, -600, -700, -800, -900]
@@ -104,8 +105,8 @@ class Fundo(pygame.sprite.Sprite):
         if self.rect.y > (2*HEIGHT):
             self.rect.y = -HEIGHT
 
-        if Pontuacao > 2000:
-            self.image = assets['paisagem'][1]
+        #if Pontuacao > 2000:
+        #    self.image = assets['paisagem'][1]
 
 
 class Explosion(pygame.sprite.Sprite):

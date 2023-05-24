@@ -1,6 +1,6 @@
 import pygame
 import os
-from config import WIDTH, HEIGHT, WIDTH_CARRO, HEIGHT_CARRO, WIDTH_NPC, HEIGHT_NPC
+from config import WIDTH, HEIGHT, WIDTH_CARRO, HEIGHT_CARRO, WIDTH_NPC, HEIGHT_NPC, IMG_DIR, SND_DIR, FNT_DIR
 
 
 PAISAGEM = 'paisagem'
