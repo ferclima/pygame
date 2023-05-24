@@ -61,6 +61,7 @@ def game_screen(window):
     PLAYING = 1
     EXPLODING = 2
     state = PLAYING
+    game = True
 
     # ===== Loop principal =====
     #pygame.mixer.music.play(loops=-1)
