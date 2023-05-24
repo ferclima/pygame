@@ -129,7 +129,7 @@ def game_screen(window):
                 assets['batida'].play()
                 game = False        
                 with open ('PONTUACAO.txt', 'a') as Arquivo:
-                    Arquivo.write("{0}/n".format(Pontuacao))
+                    Arquivo.write("{0}, ".format(Pontuacao))
 
         # ----- Gera saídas
 
