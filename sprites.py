@@ -96,6 +96,7 @@ class Fundo(pygame.sprite.Sprite):
         self.speedy = 14
         self.groups = groups
         self.assets = assets
+        self.pontuacao = 0
 
     def update(self):
 
@@ -105,8 +106,8 @@ class Fundo(pygame.sprite.Sprite):
         if self.rect.y > (2*HEIGHT):
             self.rect.y = -HEIGHT
 
-        #if Pontuacao > 2000:
-        #    self.image = assets['paisagem'][1]
+        if self.pontuacao > 2000:
+            self.image = self.assets['paisagem'][1]
 
 
 class Explosion(pygame.sprite.Sprite):

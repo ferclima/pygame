@@ -104,6 +104,9 @@ def game_screen(window):
         all_backgrounds.update()
         all_sprites.update()
         Pontuacao += 1
+        fundo_1.pontuacao = Pontuacao
+        fundo_2.pontuacao = Pontuacao
+        fundo_3.pontuacao = Pontuacao
 
         if state == PLAYING:
 
@@ -125,6 +128,8 @@ def game_screen(window):
             if now - explosion_tick > explosion_duration:
                 assets['batida'].play()
                 game = False        
+                with open ('PONTUACAO.txt', 'a') as Arquivo:
+                    Arquivo.write("{0}/n".format(Pontuacao))
 
         # ----- Gera saídas
 
