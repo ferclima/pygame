@@ -131,6 +131,7 @@ def game_screen(window):
                 state = ENDI   
                 with open ('PONTUACAO.txt', 'a') as Arquivo:
                     Arquivo.write("{0}, ".format(Pontuacao))
+                return state
 
         # ----- Gera saídas
 
@@ -146,4 +147,4 @@ def game_screen(window):
         pygame.display.update()  # Mostra o novo frame para o jogador
 
     # ===== Finalização =====
-    pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
+    #pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
