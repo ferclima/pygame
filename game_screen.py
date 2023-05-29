@@ -117,11 +117,11 @@ def game_screen(window):
                         if pygame.sprite.collide_rect(npc_1, npc_2):
                             if npc_1.rect.y > 0:
                                 if npc_1.rect.y > npc_2.rect.y:
-                                    npc_2.speedy = npc_1.speedy
-                                    npc_2.rect.bottom = npc_1.rect.top - 15
-                                else:
                                     npc_1.speedy = npc_2.speedy
-                                    npc_1.rect.bottom = npc_2.rect.top - 15
+                                    npc_1.rect.top = npc_2.rect.bottom + 15
+                                else:
+                                    npc_2.speedy = npc_1.speedy
+                                    npc_2.rect.top = npc_1.rect.bottom + 15
 
 
             hits = pygame.sprite.spritecollide(carro, all_npcs, True, pygame.sprite.collide_mask)
