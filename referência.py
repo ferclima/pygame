@@ -25,4 +25,4 @@ while state != QUIT:
         state = quit_screen(window)
 
 # ===== Finalização =====
-pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
+pygame.quit() 
