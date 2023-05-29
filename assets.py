@@ -41,7 +41,7 @@ def load_assets():
         explosion_anim.append(img)
     assets["explosion_anim"] = explosion_anim
     # ===== Loading dos sons do carro
-    pygame.mixer.music.load('Sons\carro-correndo-loop.mp3')
+    pygame.mixer.music.load('Sons\Life is a Highway.mp3')
     pygame.mixer.music.set_volume(0.4)
     #pygame.mixer.music.load('Sons\carro-explosao2.mp3')
     assets['aceleração'] = pygame.mixer.Sound('Sons\carro-correndo-loop.mp3')

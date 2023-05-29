@@ -64,7 +64,7 @@ def game_screen(window):
     game = True
 
     # ===== Loop principal =====
-    #pygame.mixer.music.play(loops=-1)
+    pygame.mixer.music.play(loops=-1)
     while game:
         clock.tick(FPS)
 
