@@ -60,7 +60,7 @@ class Carro(pygame.sprite.Sprite):
             self.rect.top = 200
 
 class NPC(pygame.sprite.Sprite):
-    def __init__(self, groups, assets):
+    def __init__(self, groups, assets, ID):
 
         pygame.sprite.Sprite.__init__(self)
 
@@ -73,6 +73,7 @@ class NPC(pygame.sprite.Sprite):
         self.rect.bottom = posicoesy_iniciais[random.randint(0,9)]
         self.groups = groups
         self.assets = assets
+        self.ID = ID
 
     def update(self):
 
