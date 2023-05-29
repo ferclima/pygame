@@ -49,7 +49,8 @@ def game_screen(window):
 
     # Criando NPCs
     for l in range(8):
-        npc = NPC(groups, assets)
+        ID = l
+        npc = NPC(groups, assets, ID)
         all_npcs.add(npc)
         all_sprites.add(npc)
 
@@ -109,6 +110,17 @@ def game_screen(window):
         fundo_3.pontuacao = Pontuacao
 
         if state == PLAYING:
+
+            for npc_1 in all_npcs:
+                for npc_2 in all_npcs:
+                    if npc_1.ID != npc_2.ID:
+                        if pygame.sprite.collide_rect(npc_1, npc_2):
+                            if npc_1.rect.y > 0:
+                                if npc_1.rect.y > npc_2.rect.y:
+                                    npc_2.speedy = npc_1.speedy
+                                else:
+                                    npc_1.speedy = npc_2.speedy
+
 
             hits = pygame.sprite.spritecollide(carro, all_npcs, True, pygame.sprite.collide_mask)
 
