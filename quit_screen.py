@@ -27,7 +27,6 @@ def quit_screen(screen):
     lista_pontuacoes.sort(reverse=True)
     posicao_rank = lista_pontuacoes.index(pontuacao_jogador)
 
-
     running = True
     while running:
 
