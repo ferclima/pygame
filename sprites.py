@@ -108,8 +108,10 @@ class Fundo(pygame.sprite.Sprite):
         if self.rect.y > (2*HEIGHT):
             self.rect.y = -HEIGHT
 
-        if self.pontuacao > 2000:
+        if self.pontuacao > 2000 and self.pontuacao < 3000:
             self.image = self.assets['paisagem'][1]
+        elif self.pontuacao > 3000 and self.pontuacao < 4000:
+            self.image = self.assets['paisagem'][2]
 
 
 class Explosion(pygame.sprite.Sprite):
