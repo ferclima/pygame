@@ -84,6 +84,7 @@ class NPC(pygame.sprite.Sprite):
         if self.rect.y > HEIGHT:
             self.rect.centerx = posicoesx_iniciais[random.randint(0,3)]
             self.rect.bottom = posicoesy_iniciais[random.randint(0,9)]
+            self.speedy = random.randint(1,4)
 
 class Fundo(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
