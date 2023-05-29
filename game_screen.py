@@ -83,7 +83,7 @@ def game_screen(window):
                     carro.speedx += 4
                 if event.key == pygame.K_UP:
                     carro.speedy -= 8
-                    assets['aceleração'].set_volume(0.2)
+                    assets['aceleração'].set_volume(0.3)
                     assets['aceleração'].play()
                 if event.key == pygame.K_DOWN:
                     carro.speedy += 4
