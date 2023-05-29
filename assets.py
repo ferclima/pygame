@@ -14,9 +14,9 @@ BOOM_SOUND = 'boom_sound'
 
 def load_assets():
     assets = {}
-    paisagem_1 = pygame.image.load('Imagens\Paisagem2..png').convert_alpha()
+    paisagem_1 = pygame.image.load('Imagens\Floresta2..png').convert_alpha()
     paisagem_1 = pygame.transform.scale(paisagem_1, (WIDTH, HEIGHT))
-    paisagem_2 = pygame.image.load('Imagens\paisagem-deserto.png').convert_alpha()
+    paisagem_2 = pygame.image.load('Imagens\deserto2.png').convert_alpha()
     paisagem_2 = pygame.transform.scale(paisagem_2, (WIDTH, HEIGHT))
     assets['paisagem'] = [paisagem_1, paisagem_2]
     assets['pista'] = pygame.image.load('Imagens\Mini pista.png').convert_alpha()
