@@ -151,7 +151,7 @@ def game_screen(window):
 
         # ----- Gera saídas
 
-        window.fill((0, 150, 0))  # Preenche com a cor verde
+        window.fill((0, 150, 0))
         all_sprites.draw(window)
 
         text_surface = assets['fonte'].render("{:08}".format(Pontuacao), True, (255, 255, 255))
