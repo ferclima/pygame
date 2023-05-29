@@ -18,7 +18,7 @@ def load_assets():
     paisagem_1 = pygame.transform.scale(paisagem_1, (WIDTH, HEIGHT))
     paisagem_2 = pygame.image.load('Imagens\deserto2.png').convert_alpha()
     paisagem_2 = pygame.transform.scale(paisagem_2, (WIDTH, HEIGHT))
-    paisagem_3 = pygame.image.load('Imagens\Gelo.png').convert_alpha()
+    paisagem_3 = pygame.image.load('Imagens\Gelo2.png').convert_alpha()
     paisagem_3 = pygame.transform.scale(paisagem_3, (WIDTH, HEIGHT))
     assets['paisagem'] = [paisagem_1, paisagem_2, paisagem_3]
     assets['pista'] = pygame.image.load('Imagens\Mini pista.png').convert_alpha()
