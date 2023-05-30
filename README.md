@@ -6,3 +6,4 @@ O jogo tem como objetivo do usuário desviar do máximo de carros possíveis, ca
 Os arquivos estão divididos em partes, porém para que o jogo funcione, é necessério usar o arquivo referência.py para jogar.
 
 Vídeo do jogo:
+https://youtu.be/A4Kr4PG2zTs
