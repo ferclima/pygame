@@ -22,7 +22,9 @@ def load_assets():
     paisagem_3 = pygame.transform.scale(paisagem_3, (WIDTH, HEIGHT))
     paisagem_4 = pygame.image.load('Imagens\Inether2.png').convert_alpha()
     paisagem_4 = pygame.transform.scale(paisagem_4, (WIDTH, HEIGHT))
-    assets['paisagem'] = [paisagem_1, paisagem_2, paisagem_3, paisagem_4]
+    paisagem_5 = pygame.image.load('Imagens\The END2.png').convert_alpha()
+    paisagem_5 = pygame.transform.scale(paisagem_5, (WIDTH, HEIGHT)) 
+    assets['paisagem'] = [paisagem_1, paisagem_2, paisagem_3, paisagem_4, paisagem_5]
     assets['pista'] = pygame.image.load('Imagens\Mini pista.png').convert_alpha()
     assets['carro'] = pygame.image.load('Imagens\carrinho2-removebg-preview.png').convert_alpha()
     assets['carro'] = pygame.transform.scale(assets['carro'], (WIDTH_CARRO, HEIGHT_CARRO))
