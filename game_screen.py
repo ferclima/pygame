@@ -126,7 +126,7 @@ def game_screen(window):
 
             hits = pygame.sprite.spritecollide(carro, all_npcs, True, pygame.sprite.collide_mask)
 
-            if len(hits) > 0 or carro.rect.centerx > 354 or carro.rect.centerx < 146:
+            if len(hits) > 0 or carro.rect.centerx > 352 or carro.rect.centerx < 148:
                 assets['aceleração'].stop()
                 assets['batida'].play()
                 carro.kill()
